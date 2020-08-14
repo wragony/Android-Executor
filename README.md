@@ -25,6 +25,7 @@ repositories {
   ...
   jcenter()
 }
+
 implementation 'com.wragony.android.executor:executor:1.0.0'
 ```
 
@@ -32,7 +33,12 @@ implementation 'com.wragony.android.executor:executor:1.0.0'
 
 
 ```
-
+<dependency>
+  <groupId>com.wragony.android.executor</groupId>
+  <artifactId>executor</artifactId>
+  <version>1.0.0</version>
+  <type>pom</type>
+</dependency>
 ```
 
 
