@@ -10,9 +10,9 @@
 
 ## Background
 
-在Android R中将不推荐使用AsyncTask。Android参考建议使用标准的java.util.concurrent类作为替代（[更多在这里（（https://developer.android.com/reference/android/os/AsyncTask），线程池默认按 FIFO 队列实现，可自定义策略；
+在Android R中将不推荐使用AsyncTask。Android参考建议使用标准的java.util.concurrent类作为替代[（更多在这里） ](https://developer.android.com/reference/android/os/AsyncTask) ，线程池默认按 FIFO 队列实现，可自定义策略；
 
-## SDK支持
+## Supported SDK
 
 Android API level 14 及以上版本
 
