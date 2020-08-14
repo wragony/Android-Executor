@@ -1,0 +1,50 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    task makeJar(type: Copy) {
+        def jarName = "Android-Executor-$android.defaultConfig.versionName\\.jar"
+        //删除存在的
+        delete "${project.rootDir}/jars/" + jarName
+        //设置拷贝的文件
+        from('build/intermediates/aar_main_jar/release/')
+        into("${project.rootDir}/jars/")
+        include('classes.jar')
+        //重命名
+        rename('classes.jar', jarName)
+
+        println '>>> flat jar'
+    }
+
+    makeJar.dependsOn(build)
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+}
+
+
+apply from: "./bintray_upload.gradle"
