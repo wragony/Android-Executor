@@ -2,6 +2,7 @@ package com.wragony.library.executor;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Process;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
@@ -108,10 +109,13 @@ public class AppExecutors {
     private AppExecutors() {
         this(new ThreadPoolExecutor(1, 1,
                         1L, TimeUnit.SECONDS,
-                        new LinkedBlockingQueue<>()),
+                        new LinkedBlockingQueue<>(),
+                        new PriorityNamedThreadFactory("exec#io", null)),
                 new ThreadPoolExecutor(CORE_POOL_SIZE, MAXIMUM_POOL_SIZE,
                         KEEP_ALIVE_SECONDS, TimeUnit.SECONDS,
-                        new LinkedBlockingQueue<>(1024), new AbortPolicy()),
+                        new LinkedBlockingQueue<>(1024),
+                        new PriorityNamedThreadFactory("exec#worker", Process.THREAD_PRIORITY_BACKGROUND),
+                        new AbortPolicy()),
                 new MainThreadExecutor());
     }
 
