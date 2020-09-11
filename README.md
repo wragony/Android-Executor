@@ -26,7 +26,7 @@ repositories {
   jcenter()
 }
 
-implementation 'com.wragony.android.executor:executor:1.0.0'
+implementation 'com.wragony.android.executor:executor:1.0.1'
 ```
 
 - maven 依赖
